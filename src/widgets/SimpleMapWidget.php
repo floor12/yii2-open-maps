@@ -1,8 +1,8 @@
 <?php
 
-namespace app\widgets;
+namespace floor12\maps\widgets;
 
-use app\assets\LeafLetPublicAppAsset;
+use floor12\maps\assets\LeafLetPublicAppAsset;
 use yii\base\Widget;
 use yii\helpers\Html;
 

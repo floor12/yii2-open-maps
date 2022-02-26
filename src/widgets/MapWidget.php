@@ -1,6 +1,6 @@
 <?php
 
-namespace app\widgets;
+namespace floor12\maps\widgets;
 
 use app\models\entity\Map;
 use yii\base\Widget;

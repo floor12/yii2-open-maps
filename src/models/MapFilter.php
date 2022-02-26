@@ -1,7 +1,7 @@
 <?php
 
 namespace floor12\maps\models;
-use app\models\entity\Map;
+
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
