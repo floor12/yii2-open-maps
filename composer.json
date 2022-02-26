@@ -1,0 +1,28 @@
+{
+  "name": "floor12/yii2-open-maps",
+  "description": "Yii2 Open Maps Module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "floor12",
+      "email": "floor12@floor12.net",
+      "role": "Developer",
+      "homepage": "https://floor12.net"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^8.0",
+    "yiisoft/yii2": "~2.0.19"
+  },
+  "autoload": {
+    "psr-4": {
+      "floor12\\maps\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "floor12\\maps\\tests\\": "tests"
+    }
+  }
+}
