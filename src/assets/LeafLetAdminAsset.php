@@ -5,7 +5,7 @@ namespace floor12\maps\assets;
 
 use yii\web\AssetBundle;
 
-class LeafLetPublicAppAsset extends AssetBundle
+class LeafLetAdminAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/floor12/yii2-open-maps/assets/';
 
@@ -14,7 +14,9 @@ class LeafLetPublicAppAsset extends AssetBundle
     ];
     public $js = [
         'leaflet.js',
-        'map-pub.js',
+        'map.js',
     ];
-
+    public $depends = [
+        'yii\web\JqueryAsset'
+    ];
 }

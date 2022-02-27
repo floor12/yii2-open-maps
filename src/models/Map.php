@@ -2,7 +2,6 @@
 
 namespace floor12\maps\models;
 
-use app\models\query\MapQuery;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -54,14 +53,14 @@ class Map extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'title' => Yii::t('app', 'Title'),
-            'init_lat' => Yii::t('app', 'Init latitude'),
-            'init_lng' => Yii::t('app', 'Init longitude'),
-            'init_zoom' => Yii::t('app', 'Init zoom value'),
-            'points' => Yii::t('app', 'Points'),
-            'draw_path' => Yii::t('app', 'Draw path'),
+            'created_at' => Yii::t('maps', 'Created At'),
+            'updated_at' => Yii::t('maps', 'Updated At'),
+            'title' => Yii::t('maps', 'Title'),
+            'init_lat' => Yii::t('maps', 'Init latitude'),
+            'init_lng' => Yii::t('maps', 'Init longitude'),
+            'init_zoom' => Yii::t('maps', 'Init zoom value'),
+            'points' => Yii::t('maps', 'Points'),
+            'draw_path' => Yii::t('maps', 'Draw path'),
         ];
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\widgets;
+namespace floor12\maps\widgets;
 
-use app\models\entity\Map;
+use floor12\maps\models\Map;
 use yii\base\Widget;
 
 class MapWidget extends Widget
@@ -16,7 +16,7 @@ class MapWidget extends Widget
         }
         return SimpleMapWidget::widget([
             'id' => 'map',
-            'drawLines' => true,
+            'drawLines' => $this->map->draw_path,
             'init_zoom' => $this->map->init_zoom,
             'init_lat' => $this->map->init_lat,
             'init_lng' => $this->map->init_lng,

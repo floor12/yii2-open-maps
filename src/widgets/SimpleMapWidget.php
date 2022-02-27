@@ -1,8 +1,8 @@
 <?php
 
-namespace app\widgets;
+namespace floor12\maps\widgets;
 
-use app\assets\LeafLetPublicAppAsset;
+use floor12\maps\assets\LeafLetPublicAppAsset;
 use yii\base\Widget;
 use yii\helpers\Html;
 
@@ -30,7 +30,7 @@ class SimpleMapWidget extends Widget
             $this->init_lng,
             $this->init_zoom,
         ));
-
+        
         \Yii::$app->getView()->registerJs(sprintf('drawPoints(%s, %s)',
             json_encode($this->points),
             $this->drawLines

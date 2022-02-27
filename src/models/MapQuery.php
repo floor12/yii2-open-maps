@@ -2,7 +2,7 @@
 
 namespace floor12\maps\models;
 
-use app\models\entity\Map;
+
 use yii\db\ActiveQuery;
 
 /**

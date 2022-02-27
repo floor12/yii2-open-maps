@@ -65,19 +65,21 @@ function onMapClick(event) {
 
 
 function initMap(lat, lng, zoom) {
-    mymap = L.map('map').setView([lat, lng], zoom);
+    setTimeout(() => {
+        mymap = L.map('map').setView([lat, lng], zoom);
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + open_map_token, {
-        maxZoom: 20,
-        id: 'mapbox/streets-v11', // id: 'mapbox/dark-v10',
-        tileSize: 512,
-        zoomOffset: -1
-    }).addTo(mymap);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + open_map_token, {
+            maxZoom: 20,
+            id: 'mapbox/streets-v11', // id: 'mapbox/dark-v10',
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(mymap);
 
-    mymap.on('move', onMapMove);
-    mymap.on('zoom', onMapMove);
-    mymap.on('click', onMapClick);
-    drawCurrentPoints();
+        mymap.on('move', onMapMove);
+        mymap.on('zoom', onMapMove);
+        mymap.on('click', onMapClick);
+        drawCurrentPoints();
+    }, 300);
 }
 
 $(document).on('keyup', '.map-point-name', () => {
