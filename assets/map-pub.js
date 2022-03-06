@@ -1,6 +1,9 @@
 const open_map_token = 'pk.eyJ1IjoiZmxvb3IxMiIsImEiOiJja3YzeW84NGcwajh2Mm5sdW5yOW9sYzNjIn0.wKlJ9RYHsP0rvAXZLt3YhA';
 
 var mymap = '';
+let satellite;
+let streets;
+var sat = false;
 
 
 function drawPoints(points, line = false) {
@@ -25,12 +28,33 @@ function drawPoints(points, line = false) {
 
 function initMap(id, lat, long, zoom) {
     mymap = L.map(id).setView([lat, long], zoom);
+    const mapboxUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + open_map_token;
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + open_map_token, {
-        maxZoom: 20,
-        id: 'mapbox/streets-v11', // id: 'mapbox/dark-v10',
+    satellite = L.tileLayer(mapboxUrl, {
+        id: 'mapbox/satellite-v9',
         tileSize: 512,
+        maxZoom: 20,
         zoomOffset: -1
-    }).addTo(mymap);
+    });
 
+    streets = L.tileLayer(mapboxUrl, {
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        maxZoom: 20,
+        zoomOffset: -1
+    });
+
+    mymap.addLayer(streets);
+}
+
+function mapSwitchMode() {
+    if (sat === false) {
+        mymap.removeLayer(streets);
+        mymap.addLayer(satellite);
+        sat = true;
+    } else {
+        mymap.removeLayer(satellite);
+        mymap.addLayer(streets);
+        sat = false;
+    }
 }

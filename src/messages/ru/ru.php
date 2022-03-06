@@ -11,4 +11,5 @@ return [
     'Url slug' => 'Slug для URL',
     'Map' => 'Карта',
     'Draw path' => 'Отображать путь',
+    'Switch map mode' => 'Переключить режим карты',
 ];

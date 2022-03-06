@@ -3,6 +3,7 @@
 namespace floor12\maps\widgets;
 
 use floor12\maps\assets\LeafLetPublicAppAsset;
+use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
 
@@ -15,6 +16,12 @@ class SimpleMapWidget extends Widget
     public string $id = 'map';
     public bool $drawLines = false;
     public bool $makeHtml = true;
+
+    public function init()
+    {
+        Yii::$app->getModule('maps');
+        parent::init();
+    }
 
     public function run(): string
     {
@@ -30,15 +37,20 @@ class SimpleMapWidget extends Widget
             $this->init_lng,
             $this->init_zoom,
         ));
-        
+
         \Yii::$app->getView()->registerJs(sprintf('drawPoints(%s, %s)',
             json_encode($this->points),
             $this->drawLines
         ));
 
-        if ($this->makeHtml)
-            return Html::tag('div', '', ['id' => 'map']);
+        if ($this->makeHtml) {
+            return Html::tag('div', '', ['id' => 'map']) .
+                Html::button(Yii::t('maps', 'Switch map mode'), [
+                    'type' => 'button',
+                    'class'=>'openmap-mode-swither',
+                    'onclick' => 'mapSwitchMode();'
+                ]);
+        }
         return '';
-
     }
 }
