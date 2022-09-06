@@ -53,7 +53,7 @@ class Module extends \yii\base\Module
         $i18n->translations['maps'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
-            'basePath' => '@vendor/floor12/maps/src/messages',
+            'basePath' => '@vendor/floor12/yii2-open-maps/src/messages',
         ];
     }
 }
