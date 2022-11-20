@@ -8,6 +8,7 @@ use yii\base\Widget;
 class MapWidget extends Widget
 {
     public ?Map $map = null;
+    public string $id = 'map';
 
     public function run(): string
     {
@@ -20,7 +21,8 @@ class MapWidget extends Widget
             'init_zoom' => $this->map->init_zoom,
             'init_lat' => $this->map->init_lat,
             'init_lng' => $this->map->init_lng,
-            'points' => $this->map->pointsForMap()
+            'points' => $this->map->pointsForMap(),
+            'id' => $this->id
         ]);
     }
 }

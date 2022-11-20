@@ -31,24 +31,25 @@ class SimpleMapWidget extends Widget
 
         LeafLetPublicAppAsset::register(\Yii::$app->getView());
 
-        \Yii::$app->getView()->registerJs(sprintf('initMap(%s,%s,%s,%s)',
+        \Yii::$app->getView()->registerJs(sprintf('initMap("%s",%s,%s,%s)',
             $this->id,
             $this->init_lat,
             $this->init_lng,
             $this->init_zoom,
         ));
 
-        \Yii::$app->getView()->registerJs(sprintf('drawPoints(%s, %s)',
+        \Yii::$app->getView()->registerJs(sprintf('drawPoints("%s", %s,%s)',
+            $this->id,
             json_encode($this->points),
-            $this->drawLines
+            $this->drawLines ? 'true' : 'false',
         ));
 
         if ($this->makeHtml) {
-            return Html::tag('div', '', ['id' => 'map']) .
+            return Html::tag('div', '', ['id' => $this->id]) .
                 Html::button(Yii::t('maps', 'Switch map mode'), [
                     'type' => 'button',
-                    'class'=>'openmap-mode-swither',
-                    'onclick' => 'mapSwitchMode();'
+                    'class' => 'openmap-mode-swither',
+                    'onclick' => sprintf('mapSwitchMode("%s");', $this->id)
                 ]);
         }
         return '';

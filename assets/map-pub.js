@@ -1,14 +1,16 @@
 const open_map_token = 'pk.eyJ1IjoiZmxvb3IxMiIsImEiOiJja3YzeW84NGcwajh2Mm5sdW5yOW9sYzNjIn0.wKlJ9RYHsP0rvAXZLt3YhA';
 
-var mymap = '';
-let satellite;
-let streets;
-var sat = false;
+let maps = {};
+let satellite = {};
+let streets = {};
+let satMode = {};
+
+const mapboxUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + open_map_token;
 
 
-function drawPoints(points, line = false) {
+function drawPoints(id, points, line = false) {
     if (line)
-        path = L.polyline(points, {color: '#342F2F', weight: 5}).addTo(mymap);
+        path = L.polyline(points, {color: '#342F2F', weight: 5}).addTo(maps[id]);
 
     let icon = L.icon({
         iconUrl: '/design/map-marker.png',
@@ -21,40 +23,38 @@ function drawPoints(points, line = false) {
         if (elem[2].length > 0) {
             L.marker([elem[0], elem[1]], {
                 icon
-            }).bindPopup(elem[2]).addTo(mymap);
+            }).bindPopup(elem[2]).addTo(maps[id]);
         }
     });
 }
 
 function initMap(id, lat, long, zoom) {
-    mymap = L.map(id).setView([lat, long], zoom);
-    const mapboxUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + open_map_token;
-
-    satellite = L.tileLayer(mapboxUrl, {
+    maps[id] = L.map(id).setView([lat, long], zoom);
+    satellite[id] = L.tileLayer(mapboxUrl, {
         id: 'mapbox/satellite-v9',
         tileSize: 512,
         maxZoom: 20,
         zoomOffset: -1
     });
 
-    streets = L.tileLayer(mapboxUrl, {
+    streets[id] = L.tileLayer(mapboxUrl, {
         id: 'mapbox/streets-v11',
         tileSize: 512,
         maxZoom: 20,
         zoomOffset: -1
     });
-
-    mymap.addLayer(streets);
+    satMode[id] = false;
+    maps[id].addLayer(streets[id]);
 }
 
-function mapSwitchMode() {
-    if (sat === false) {
-        mymap.removeLayer(streets);
-        mymap.addLayer(satellite);
-        sat = true;
+function mapSwitchMode(id) {
+    if (satMode[id] === false) {
+        maps[id].removeLayer(streets[id]);
+        maps[id].addLayer(satellite[id]);
+        satMode[id] = true;
     } else {
-        mymap.removeLayer(satellite);
-        mymap.addLayer(streets);
-        sat = false;
+        maps[id].removeLayer(satellite[id]);
+        maps[id].addLayer(streets[id]);
+        satMode[id] = false;
     }
 }
