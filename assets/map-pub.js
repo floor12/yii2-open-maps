@@ -28,6 +28,10 @@ function drawPoints(id, points, line = false) {
     });
 }
 
+function setMapCenter(id, lat, long, zoom) {
+    maps[id].setView([lat, long], zoom);
+}
+
 function initMap(id, lat, long, zoom) {
     maps[id] = L.map(id).setView([lat, long], zoom);
     satellite[id] = L.tileLayer(mapboxUrl, {
